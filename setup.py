@@ -9,15 +9,15 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='FR_Template',
-    version="1.13.73",
+    name='Projet Gabriel',
+    version="0.13",
     author='Franck Rochat',
     author_email='rochat.franck@gmail.com',
-    description='The Starter Pack.',
-    url='https://github.com/Franck1333/FR_Template',
+    description="Projet d'agrégation d'actualité via mots clés.",
+    url='https://github.com/Franck1333/Projet-Gabriel',
     license='lgpl',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["Unidecode","Unirest","urllib3","requests","pydub","pyserial","Cython","kivy"], #Get the Dependencies from Pypi (pip install)
+    install_requires=["psutil","setuptools","feedparser","reportlab"], #Get the Dependencies from Pypi (pip install)
     #dependency_links=[''], #Get the Dependencies via HTTP(s)
 )

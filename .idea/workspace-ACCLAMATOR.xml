@@ -61,26 +61,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.GestionFichier.executor": "Debug",
-    "Python.ScrapingProut.executor": "Run",
-    "Python.feedParser.executor": "Run",
-    "Python.feedParser_ChoixMultiples.executor": "Run",
-    "Python.feedParser_plusieurs.executor": "Run",
-    "Python.gdeltTestFile.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/OneDrive/Documents/Projets/Projet GITHUB/PROJET GABRIEL/GABRIEL_Windows",
-    "settings.editor.selected.configurable": "Errors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.ScrapingProut.executor&quot;: &quot;Run&quot;,
+    &quot;Python.feedParser.executor&quot;: &quot;Run&quot;,
+    &quot;Python.feedParser_ChoixMultiples.executor&quot;: &quot;Run&quot;,
+    &quot;Python.feedParser_plusieurs.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gdeltTestFile.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/OneDrive/Documents/Projets/Projet GITHUB/PROJET GABRIEL/GABRIEL_Windows&quot;
   }
-}]]></component>
+}</component>
   <component name="QodanaCIConfigService">
     <option name="ciType" value="GITHUB" />
     <option name="path" value="$PROJECT_DIR$/.github/workflows/qodana_code_quality.yml" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.ScrapingProut">
     <configuration name="ScrapingProut" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="GABRIEL_Windows" />
       <option name="ENV_FILES" value="" />
@@ -127,8 +125,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.feedParser_ChoixMultiples" />
         <item itemvalue="Python.ScrapingProut" />
+        <item itemvalue="Python.feedParser_ChoixMultiples" />
       </list>
     </recent_temporary>
   </component>
