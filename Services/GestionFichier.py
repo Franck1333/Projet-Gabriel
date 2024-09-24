@@ -35,7 +35,7 @@ def temps_actuel():
 def GenerationRapportTXT():
     # Expérimentation des méthodes permettant de générer un fichier.
     # Flux RSS de FranceBleu
-    rss_url = "https://www.francebleu.fr/rss/a-la-une.xml"
+    rss_url = "https://www.cnews.fr/rss.xml"
     # Parse the RSS feed
     feed = feedparser.parse(rss_url)  # Décodage du flux RSS par la lib feedParser.
     ################################################
@@ -87,90 +87,117 @@ def GenerationRapportTXT():
 
 
 def GenerationRapportPDF():
-    # Most of this function is made by ChatGPT.
-    # Flux RSS de FranceBleu
-    rss_url = "https://www.francebleu.fr/rss/a-la-une.xml"
-    # Parse the RSS feed
-    feed = feedparser.parse(rss_url)  # Décodage du flux RSS par la lib feedParser.
+    # Ce code a été généré avec l'aide d'une IA, ChatGPT, pour créer un rapport PDF en utilisant le flux RSS.
 
-    ################################################
-    # // Création du repertoire dédié aux rapports \\.
-    base_dir = os.getcwd()  # Obtenir le répertoire de travail actuel
-    rapport_dir = os.path.join(base_dir, "Rapports")  # Définir le chemin du dossier "Rapports"
-    # Créer le dossier "Rapports" s'il n'existe pas déjà
-    if not os.path.exists(rapport_dir):
+    # Récupération du flux RSS à partir de l'URL de CNews
+    rss_url = "https://www.cnews.fr/rss.xml"
+    feed = feedparser.parse(rss_url)  # Décodage du flux RSS avec feedparser
+
+    # Obtenir le répertoire de travail actuel et créer un dossier "Rapports"
+    base_dir = os.getcwd()  # Obtient le chemin du répertoire actuel
+    rapport_dir = os.path.join(base_dir, "Rapports")  # Crée le chemin pour le dossier "Rapports"
+    if not os.path.exists(rapport_dir):  # Si le dossier n'existe pas, le créer
         os.makedirs(rapport_dir)
 
-    timeNAME = temps_actuel()  # Enregistrement de l'horloge système.
-    cheminPDF = os.path.join(rapport_dir, "RapportRSSpdf_" + timeNAME + ".pdf")  # Définir le chemin complet du fichier
-    # print(cheminPDF + "\n")
+    # Génération d'un nom de fichier PDF basé sur l'horloge système
+    timeNAME = temps_actuel()  # Fonction qui renvoie l'heure actuelle (non définie ici)
+    cheminPDF = os.path.join(rapport_dir, "RapportRSSpdf_" + timeNAME + ".pdf")  # Définir le chemin du fichier PDF
 
-    # Création de l'objet PDF avec une page A4
+    # Création d'un objet PDF avec une page A4
     pdf = canvas.Canvas(cheminPDF, pagesize=A4)
-    document_title = 'Rapport RSS du ' + timeNAME
-    pdf.setTitle(document_title)
-    # Enregistrement de la police externe
-    font_path = 'Gill_Sans_MT.TTF'
-    font_name = 'GillSans'
-    pdfmetrics.registerFont(TTFont(font_name, font_path))
+    document_title = 'Rapport RSS du ' + timeNAME  # Titre du document
+    pdf.setTitle(document_title)  # Définir le titre du PDF
 
-    # Initialisation de la position Y de départ pour le premier article
+    # Enregistrement d'une police externe pour utilisation
+    font_path = 'Gill_Sans_MT.TTF'  # Chemin de la police
+    font_name = 'GillSans'  # Nom à utiliser pour la police
+    pdfmetrics.registerFont(TTFont(font_name, font_path))  # Enregistrer la police dans le PDF
+
+    # Initialisation de la position Y de départ pour les articles
     y_position = 800  # Position de départ en haut de la page
 
-    # Largeur maximale pour le texte
-    max_width = 450  # En points (A4 a une largeur de 595 points)
+    # Largeur maximale pour le texte sur une ligne
+    max_width = 450  # En points (une page A4 fait 595 points de large)
 
-    # Boucle principale pour parcourir les articles du flux RSS
+    # Fonction pour découper le texte en lignes de taille maximale
+    # noinspection PyShadowingNames
+    def wrap_text(text, font_name, font_size, max_width, pdf):
+        wrapped_lines = []  # Liste pour stocker les lignes découpées
+        words = text.split()  # Découpe le texte en mots
+        line = ""  # Chaîne vide pour accumuler chaque ligne
+
+        # Parcours de chaque mot pour tester s'il rentre dans la largeur maximale
+        for word in words:
+            test_line = f"{line} {word}".strip()  # Teste si on peut ajouter le mot à la ligne courante
+            if pdf.stringWidth(test_line, font_name, font_size) <= max_width:  # Vérifie la largeur de la ligne
+                line = test_line  # Si oui, on l'ajoute
+            else:
+                wrapped_lines.append(line)  # Sinon, on sauvegarde la ligne et commence une nouvelle
+                line = word  # Le mot qui dépasse devient la première ligne suivante
+        wrapped_lines.append(line)  # Ajouter la dernière ligne qui restait
+
+        return wrapped_lines  # Retourne toutes les lignes découpées
+
+    # Boucle pour parcourir chaque article du flux RSS
     for i in feed.entries:
-        # Regroupement des champs de l'article dans une liste
-        text_lines = [
-            i.title,
-            i.description,
-            i.link,
-            i.updated,
-            " "  # Ajouter un espace vide pour séparer les articles
-        ]
+        # Création d'un bloc de texte contenant les informations de chaque article
+        article_text = f"Titre : {i.title}\nDescription : {i.description}\nDate : {i.updated}"
 
-        # Utilisation d'un TextObject pour gérer les retours à la ligne
-        text_object = pdf.beginText(100, y_position)  # Commence à la position (x, y)
-        text_object.setFont(font_name, 12)
+        # Création d'un objet texte pour gérer les retours à la ligne dans le PDF
+        text_object = pdf.beginText(100, y_position)  # Commence à la position (100, y_position) sur la page
+        text_object.setFont(font_name, 12)  # Définit la police et la taille pour ce texte
 
-        # Fonction pour découper le texte en lignes de taille maximale
-        def wrap_text(text, font_name, font_size, max_width, pdf):
-            wrapped_lines = []
-            words = text.split()
-            line = ""
+        # Découper le texte en lignes pour qu'il ne dépasse pas la largeur maximale
+        wrapped_lines = wrap_text(article_text, font_name, 12, max_width, pdf)
+        for wrapped_line in wrapped_lines:
+            if y_position < 50:  # Si on atteint le bas de la page, créer une nouvelle page
+                pdf.showPage()  # Crée une nouvelle page
+                y_position = 800  # Réinitialiser la position Y en haut de la nouvelle page
+                text_object = pdf.beginText(100, y_position)  # Recommence un nouveau bloc de texte
+                text_object.setFont(font_name, 12)
+            text_object.textLine(wrapped_line)  # Ajouter la ligne au texte
+            y_position -= 20  # Baisse la position Y pour la ligne suivante
 
-            for word in words:
-                test_line = f"{line} {word}".strip()
-                if pdf.stringWidth(test_line, font_name, font_size) <= max_width:
-                    line = test_line
-                else:
-                    wrapped_lines.append(line)
-                    line = word
-            wrapped_lines.append(line)
-
-            return wrapped_lines
-        # Ajouter chaque ligne de texte au TextObject
-        for line in text_lines:
-            wrapped_lines = wrap_text(line, font_name, 12, max_width, pdf)  # Découper les lignes qui sont trop longues
-            for wrapped_line in wrapped_lines:
-                if y_position < 50:  # Si la position y est trop basse, passer à une nouvelle page
-                    pdf.showPage()  # Créer une nouvelle page
-                    y_position = 800  # Réinitialiser la position y en haut de la nouvelle page
-                    text_object = pdf.beginText(100, y_position)
-                    text_object.setFont(font_name, 12)
-                text_object.textLine(wrapped_line)  # Ajoute la ligne au TextObject
-                y_position -= 20  # Déplacer la position y vers le bas pour la ligne suivante
-
-        # Dessine le TextObject sur le PDF
+        # Dessiner le bloc de texte sur le PDF
         pdf.drawText(text_object)
 
-    # Sauvegarde du PDF
+        # Gestion de l'URL complète de l'article
+        full_link = i.link  # Récupérer l'URL complète
+        link_text = "Lien: " + full_link  # Ajouter "Lien:" suivi de l'URL
+
+        # Si l'URL peut tenir sur une seule ligne, l'ajouter
+        if pdf.stringWidth(link_text, font_name, 12) <= max_width:
+            pdf.drawString(100, y_position, link_text)  # Affiche le lien
+            # Créer une zone cliquable avec le lien complet
+            pdf.linkURL(full_link, (100 + pdf.stringWidth("Lien: ", font_name, 12), y_position, 100 + pdf.stringWidth(link_text, font_name, 12), y_position + 15), relative=0)
+            y_position -= 20  # Baisse la position Y après le lien
+        else:
+            # Si l'URL est trop longue, afficher "Lien:" d'abord
+            pdf.drawString(100, y_position, "Lien: ")
+            link_x_position = 100 + pdf.stringWidth("Lien: ", font_name, 12)  # Position après "Lien:"
+            link_lines = wrap_text(full_link, font_name, 12, max_width - link_x_position, pdf)  # Découper l'URL sur plusieurs lignes
+
+            # Afficher chaque ligne de l'URL découpée
+            for link_line in link_lines:
+                if y_position < 50:  # Si on atteint le bas de la page, créer une nouvelle page
+                    pdf.showPage()  # Crée une nouvelle page
+                    y_position = 800
+                pdf.drawString(link_x_position, y_position, link_line)  # Affiche chaque partie du lien
+                pdf.linkURL(full_link, (link_x_position, y_position, link_x_position + pdf.stringWidth(link_line, font_name, 12), y_position + 15), relative=0)  # Crée une zone cliquable pour chaque ligne
+                link_x_position = 100  # Pour les lignes suivantes, revenir à 100
+                y_position -= 20  # Baisse la position Y pour la ligne suivante
+
+        # Ajoute un espace supplémentaire entre les articles
+        y_position -= 40
+
+    # Sauvegarder le fichier PDF
     pdf.save()
-    size = os.path.getsize(cheminPDF)  # Méthode permettant de connaitre la taille du fichier créé.
-    size = size / 1024  # Division par 1024 pour obtenir le résultat en Kilo-octet.
-    print(f' La taille du nouveau rapport PDF est de {size} octets.')  # Affichage de la variable {}.
+
+    # Affichage de la taille du fichier PDF créé
+    size = os.path.getsize(cheminPDF)  # Obtenir la taille du fichier en octets
+    size = size / 1024  # Convertir en kilo-octets
+    print(f'La taille du nouveau rapport PDF est de {size} octets.')
+
 
 
 if __name__ == "__main__":
