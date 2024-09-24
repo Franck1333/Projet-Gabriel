@@ -1,12 +1,6 @@
 # FR_Template
 
-Projet d'agrégation d'actualité via mots clés.
-News aggregation project using keywords.
-
-Work in progress, most of you see is comming from a template.
-See you soon :+1:
-
-Thanks <3 .
+This Software allow you to get financials informations about cryptocurrencies by using Python3 and the UI that will let you interact to the software with a modern graphic user interface.
 
 [![Image](https://alternative.me/crypto/fear-and-greed-index.png)](https://alternative.me/crypto/fear-and-greed-index.png)  
 

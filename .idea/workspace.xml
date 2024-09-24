@@ -5,19 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a2db7dd-28cd-496f-8603-0996f239862c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FR_Template.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template_UI/RASPBIAN/Kivy/Interface_Kivy.kv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template_UI/RASPBIAN/Kivy/Interface_Kivy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template_UI/RASPBIAN/Kivy/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template_UI/RASPBIAN/Tkinter/Interface_Tkinter_Template.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Template_UI/RASPBIAN/Tkinter/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/GestionFichier.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/GestionFichier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Rapports/RapportRSSpdf_15-08-2024-12_32_14.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Rapports/RapportRSSpdf_15-08-2024-12_36_37.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Rapports/RapportRSSpdf_15-08-2024-12_37_13.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Rapports/RapportRSSpdf_15-08-2024-12_38_17.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Rapports/RapportRSStexte_15-08-2024-12_32_14.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Rapports/RapportRSStexte_15-08-2024-12_36_37.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Rapports/RapportRSStexte_15-08-2024-12_37_13.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Rapports/RapportRSStexte_15-08-2024-12_38_17.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +39,12 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Franck1333/FR_Template.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/Franck1333/Projet-Gabriel.git&quot;,
     &quot;accountId&quot;: &quot;022a9dd6-29e1-44c4-8271-abba323918b2&quot;
   }
 }</component>
   <component name="ProblemsViewState">
+    <option name="autoscrollToSource" value="true" />
     <option name="selectedTabId" value="CurrentFile" />
     <option name="sortByName" value="true" />
   </component>
@@ -63,7 +61,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.GestionFichier.executor": "Debug",
+    "Python.GenPDF.executor": "Run",
+    "Python.GestionFichier.executor": "Run",
+    "Python.GestionFichier.test.executor": "Run",
     "Python.ScrapingProut.executor": "Run",
     "Python.feedParser.executor": "Run",
     "Python.feedParser_ChoixMultiples.executor": "Run",
@@ -72,8 +72,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/OneDrive/Documents/Projets/Projet GITHUB/PROJET GABRIEL/GABRIEL_Windows",
-    "settings.editor.selected.configurable": "Errors"
+    "last_opened_file_path": "C:/Users/fun13/Documents/TabNine-1.139.0.zip",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="QodanaCIConfigService">
@@ -81,6 +81,28 @@
     <option name="path" value="$PROJECT_DIR$/.github/workflows/qodana_code_quality.yml" />
   </component>
   <component name="RunManager">
+    <configuration name="GestionFichier.test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GABRIEL_Windows" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Services" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Services/GestionFichier.test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="ScrapingProut" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="GABRIEL_Windows" />
       <option name="ENV_FILES" value="" />
@@ -127,17 +149,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.GestionFichier.test" />
         <item itemvalue="Python.feedParser_ChoixMultiples" />
         <item itemvalue="Python.ScrapingProut" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
